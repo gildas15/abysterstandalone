@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Gerer vos Comptes</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="search form-control" placeholder="Chercher en saisissant">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">ICI!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Listes des comptes</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p><a href="{{ path('abaccount_new') }}" class="btn btn-primary">Cree un nouveau Compte</a></p>
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action" id="userTbl">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title no-link last"><span class="nobr">Actions</span>
+                            </th>
+                            <th class="column-title">Email </th>
+                            <th class="column-title">Cosumersecret </th>
+                            <th class="column-title">Status</th>
+                            <th class="column-title">Registration date </th>
+                            <th class="column-title">Activation date </th>
+                            <th class="column-title">Phone number </th>
+                            <th class="column-title">Balance</th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for aBAccount in aBAccounts %}
+                          <tr class="even pointer">
+                             <td>
+                            <ul>
+                                <li>
+                                <a href="{{ path('abaccount_show', { 'id': aBAccount.id }) }}" class="btn btn-success">lister</a>
+                                </li>
+                                <li>
+                                <a href="{{ path('abaccount_edit', { 'id': aBAccount.id }) }}" class="btn btn-warning">modifier</a>
+                                </li>
+                            </ul>
+                            </td>
+                            <td class=" ">{{ aBAccount.email }}</td>
+                            <td class=" ">{{ aBAccount.cosumerSecret }}</td>
+                            <td class=" ">{{ aBAccount.status }}</td>
+                            <td class=" ">{% if aBAccount.registrationDate %}{{ aBAccount.registrationDate|date('Y-m-d') }}{% endif %}</td>
+                            <td class=" ">{% if aBAccount.activationDate %}{{ aBAccount.activationDate|date('Y-m-d') }}{% endif %}</td>
+                            <td class=" ">{{ aBAccount.phoneNumber }}</td>
+                            <td class=" ">{{ aBAccount.balance }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      <ul>
+              </ul>
+                    </div>
+                            
+                        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                          <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                              <li><a href="{{ path('home') }}"><i class="fa fa-home"></i> Home <span></span></a>
+                              </li>
+                              <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-user"></i> Nouveau Administrateur</a>
+                              </li>
+                              <li><a><i class="fa fa-edit"></i> Gerer vos comptes <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="{{ path('abaccount_new') }}">Ajout des comptes</a></li>
+                                  <li><a href="{{ path('abaccount_index') }}">Modifier ou supprimer un Compte existant</a></li>
+                                </ul>
+                              </li>
+                              <li><a><i class="fa fa-edit"></i> Gerer vos passerelles <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                  <li><a href="{{ path('passerelle_new') }}">Ajout des nouvelles passerelles</a></li>
+                                  <li><a href="{{ path('passerelle_index') }}">Modifier ou supprimer une passerelle</a></li>
+                                </ul>
+                              </li>
+                              <li><a><i class="fa fa-edit"></i> Gerer vos transactions <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                  <li><a href="{{ path('transactions_index') }}">Verifier la liste de vos transactions</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+
+</div>

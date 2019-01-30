@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Abyster standalone{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--external links -->
+        <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/vendors/bootstrap/dist/css/bootstrap.min.css') }}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/vendors/font-awesome/css/font-awesome.min.css') }}" />
+    <!-- NProgress -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/vendors/nprogress/nprogress.css') }}" />
+    <!-- bootstrap-daterangepicker -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" />
+    <!-- Custom Theme Style -->
+     <link rel="stylesheet" href="{{ asset('bundles/app/build/css/custom.css') }}" />
+     <!--custom mystyle -->
+       <link rel="stylesheet" href="{{ asset('bundles/app/build/css/mystyle.css') }}" />
+     {% endblock %}
+    </head>
+  </div>
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                          <a href="{{ path('home') }}" class="site_title"><img src="{{ asset('bundles/app/images/abyster_logo.png') }}" width="200px"></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      {% block menu %}
+                        <!-- menu profile quick info -->
+                      {{ include('include/menu.html.twig') }}
+                        <!-- /menu profile quick info -->
+                      {% endblock %}
+                        
+                        <br />
+                       {% block sidebar %}
+                        <!-- sidebar menu -->
+                        {{ include('include/sidebar.html.twig') }}
+                        <!-- /sidebar menu -->
+                       {% endblock %}
+
+                       {% block menu_footer %}
+                        <!-- /menu footer buttons -->
+                      {{ include('include/menu_footer.html.twig') }}
+                        <!-- /menu footer buttons -->
+                      {% endblock %}
+                    </div>
+                </div>
+      {% block top_navigation %}
+        <!-- top navigation -->
+       {{ include('include/top_navigation.html.twig') }}
+        <!-- /top navigation -->
+      {% endblock %}
+
+         {% block body %}
+         
+         {% endblock %}
+                
+              {% block footer %}
+              <!-- footer content -->
+              {{ include('include/footer.html.twig') }}
+              <!-- /footer content -->
+               {% endblock %}
+                
+            </div>
+        </div>
+    {% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('bundles/app/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('bundles/app/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bundles/app/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('bundles/app/vendors/nprogress/nprogress.js') }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ asset('bundles/app/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    <!-- jQuery Sparklines -->
+    <script src="{{ asset('bundles/app/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+    <!-- Flot -->
+    <script src="{{ asset('bundles/app/vendors/Flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/Flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/Flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/Flot/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/Flot/jquery.flot.resize.js') }}"></script>
+    <!-- Flot plugins -->
+    <script src="{{ asset('bundles/app/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/flot.curvedlines/curvedLines.js') }}"></script>
+    <!-- DateJS -->
+    <script src="{{ asset('bundles/app/vendors/DateJS/build/date.js') }}"></script>
+    <script src="{{ asset('bundles/app/build/js/custom.js') }}"></script>
+    <script src="{{ asset('bundles/app/build/js/sample.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('bundles/app/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    {% endblock %}
+    </body>
+</html>

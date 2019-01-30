@@ -1,0 +1,24 @@
+passerelle_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Passerelle:index" }
+    methods:  GET
+
+passerelle_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Passerelle:show" }
+    methods:  GET
+
+passerelle_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Passerelle:new" }
+    methods:  [GET, POST]
+
+passerelle_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Passerelle:edit" }
+    methods:  [GET, POST]
+
+passerelle_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Passerelle:delete" }
+    methods:  DELETE

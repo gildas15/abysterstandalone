@@ -1,0 +1,14 @@
+transactions_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Payment:index" }
+    methods:  GET
+
+transactions_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Payment:show" }
+    methods:  GET
+
+transactions_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Payment:edit" }
+    methods:  [GET, POST]

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="right_col" role="main">
+           <div id="transactions" data-vars="{{variationTransactions|json_encode|e('html_attr')}}">
+           </div>
+          <div class="">
+            <div class="row top_tiles">
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                  <div class="count">{{ totalTransactions }}</div>
+                  <h3>Nombre Totals</h3>
+                  <p>de vos transactions</p>
+                </div>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-money"></i></div>
+                  <div class="count">{{ revenue }}</div>
+                  <h3>Revenue</h3>
+                  <p>En terme de toutes les transactions</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Variations des transactions<small>Pour payment deja effectuer en fonction des dates</small></h2>
+                    <div class="filter">
+                      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                      <div class="demo-container" style="height:280px">
+                        <div id="chart_plot_02" class="demo-placeholder"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+{% endblock %}

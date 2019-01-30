@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="right_col" role="main">
+    <h1> Effectuer une operation sur une Passerelle</h1>
+    <table>
+        <tbody>
+            <tr>
+                <th>Msisdn</th>
+                <td>{{ passerelle.msisdn }}</td>
+            </tr>
+            <tr>
+                <th>Countrycode</th>
+                <td>{{ passerelle.countryCode }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ passerelle.state }}</td>
+            </tr>
+            <tr>
+                <th>Regularexpression</th>
+                <td>{{ passerelle.regularExpression }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ passerelle.name }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if passerelle.dateCreation %}{{ passerelle.dateCreation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Typetransaction</th>
+                <td>{{ passerelle.typeTransaction }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('passerelle_index') }}" class="btn btn-success">Retour a la Liste</a>
+        </li>
+        <li>
+            <a href="{{ path('passerelle_edit', { 'id': passerelle.id }) }}" class="btn btn-warning">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+</div>
+{% endblock %}

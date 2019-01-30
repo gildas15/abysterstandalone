@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="right_col" role="main">
+    <h1>Effectuer une operation sur ce sur un Compte existant</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Email</th>
+                <td>{{ aBAccount.email }}</td>
+            </tr>
+            <tr>
+                <th>Cosumersecret</th>
+                <td>{{ aBAccount.cosumerSecret }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ aBAccount.status }}</td>
+            </tr>
+            <tr>
+                <th>Registrationdate</th>
+                <td>{% if aBAccount.registrationDate %}{{ aBAccount.registrationDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Activationdate</th>
+                <td>{% if aBAccount.activationDate %}{{ aBAccount.activationDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ aBAccount.address }}</td>
+            </tr>
+            <tr>
+                <th>Phonenumber</th>
+                <td>{{ aBAccount.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Balance</th>
+                <td>{{ aBAccount.balance }}</td>
+            </tr>
+            <tr>
+                <th>Social Reason</th>
+                <td>{{ aBAccount.socialReason }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('abaccount_index') }}" class="btn btn-success">Retour a la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('abaccount_edit', { 'id': aBAccount.id }) }}"  class="btn btn-warning">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+</div>
+{% endblock %}

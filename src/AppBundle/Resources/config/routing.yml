@@ -1,0 +1,15 @@
+home:
+    path:     /
+    defaults: { _controller: AppBundle:Locate:sucessfulin }
+
+app_abaccount:
+    resource: "@AppBundle/Resources/config/routing/abaccount.yml"
+    prefix:   /abaccount
+
+app_passerelle:
+    resource: "@AppBundle/Resources/config/routing/passerelle.yml"
+    prefix:   /passerelle
+
+app_transactions:
+    resource: "@AppBundle/Resources/config/routing/transactions.yml"
+    prefix:   /transactions

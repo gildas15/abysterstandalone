@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+              <div class="title_left">
+                <h3>Listes des transactions</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="search form-control" placeholder="Chercher en saisissant">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">ICI!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Listes des transactions</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action" id="userTbl">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title no-link last"><span class="nobr">Actions</span>
+                            </th>
+                            <th class="column-title">Emailsender</th>
+                            <th class="column-title">Customername</th>
+                            <th class="column-title">Msisdnsender</th>
+                            <th class="column-title">Countrycode</th>
+                            <th class="column-title">Datetransfert</th>
+                            <th class="column-title">Orderid</th>
+                            <th class="column-title">Fees</th>
+                            <th class="column-title">Datereceptionsms</th>
+                            <th class="column-title">Amountttc</th>
+                            <th class="column-title">Typeoperation</th>
+                            <th class="column-title">Currency</th>
+                            <th class="column-title">State</th>
+                            <th class="column-title">Totalamountreceived</th>
+                            <th class="column-title">Deltaamount</th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for transaction in transactions %}
+                          <tr class="even pointer">
+                             <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('transactions_show', { 'id': transaction.id }) }}" class="btn btn-success">Voir details</a>
+                                     <a href="{{ path('transactions_edit', { 'id': transaction.id }) }}" class="btn btn-warning">Modiifier</a>
+                                </li>
+                            </ul>
+                            </td>
+                             <td>{{ transaction.emailSender }}</td>
+                            <td>{{ transaction.customerName }}</td>
+                            <td>{{ transaction.msisdnSender }}</td>
+                            <td>{{ transaction.countryCode }}</td>
+                            <td>{% if transaction.dateTransfert %}{{ transaction.dateTransfert|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ transaction.orderId }}</td>
+                            <td>{{ transaction.fees }}</td>
+                            <td>{% if transaction.dateReceptionSms %}{{ transaction.dateReceptionSms|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ transaction.amountTtc }}</td>
+                            <td>{{ transaction.typeOperation }}</td>
+                            <td>{{ transaction.currency }}</td>
+                            <td>{{ transaction.state }}</td>
+                            <td>{{ transaction.totalAmountReceived }}</td>
+                            <td>{{ transaction.deltaAmount }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      <ul>
+              </ul>
+                    </div>
+                            
+                        
+                  </div>
+                </div>
+              </div>
+            </div>
+   
+    </div>
+</div>
+{% endblock %}

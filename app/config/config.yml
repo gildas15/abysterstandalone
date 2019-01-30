@@ -1,0 +1,126 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enabled: true, enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+    templating:
+        engine: ['twig']
+    #serializer: { enable_annotations: true }
+    serializer:
+        enabled: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    #configure twig bundle to use bootstrap layout for form styling(added by gildas)
+    form_themes:
+        - bootstrap_4_horizontal_layout.html.twig
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    host: '%mailer_host%'
+    encryption: '%mailer_encryption%'
+    #auth_mode: login
+    #spool: { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: 216441@supinfo.com
+        sender_name: TutoFOSUserBundle
+    #to add new field to fos user registration form
+    #registration:
+    #    form:
+    #        type: AppBundle\Form\RegistrationType
+
+#nelmio configuration to remove route I don't want in my documentation
+nelmio_api_doc: 
+    documentation:
+        host: localhost
+        schemes: [http, https]
+        info:
+            title:  services API
+            description: Tester nos API avec simplicite
+            version: 1.0.0
+    areas:
+        default:
+            path_patterns: [ ^/ws ]
+
+fos_rest:
+    body_converter:
+        enabled: true
+    view:
+        formats: { json: true, xml: false, rss: false}
+        view_response_listener: true
+    serializer:
+        serialize_null: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    format_listener:
+        rules:
+            - { path: '^/ws', priorities: ['json'], fallback_format: 'json' }
+            - { path: '^/api/doc', priorities: ['application/xhtml+xml'], fallback_format: 'application/xhtml' }
+            - { path: '^/', priorities: [ 'text/html', '*/*'], fallback_format: html, prefer_extension: true } #fix No matching accepted Response format could be determined
+    body_listener:
+        enabled: true
+    param_fetcher_listener: true
+    zone:
+        - { path: ^/ws/* }

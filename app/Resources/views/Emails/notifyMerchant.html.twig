@@ -1,0 +1,60 @@
+{% extends 'sendEmail.html.twig' %}
+
+{% block body %}
+ <h2>Utilisation de l'API <a href="#">ABYSTER</a></h2>
+ <!-- cas de transaction incomplete -->
+<div style="color:#B22222;">{% if transaction.state == "INCOMPLETE" %} Vous avez recu un payment INCOMPLET {% endif %}</div>
+<!-- cas de la transaction complete -->
+<div>{% if transaction.state == "DONE" %} Vous avez recu un payment{% endif %}</div>
+<b>Numero de transaction {{transaction.id }}</b>
+<p style="border:1px solid #055505; border-radius:25px; color:#055505;">Vous avez recu un payment {% if transaction.state == "INCOMPLETE" %} INCOMPLET {% endif %} 
+d'un montant de {{ montantPayer }}&nbsp;{{ transaction.currency }}
+{% if transaction.state == "INCOMPLETE" %} D'une somme totale attendue de {{transaction.amountTtc }}&nbsp;{{ transaction.currency }} {% endif %}
+envoyer par {{ transaction.customerName }}&nbsp; {{ transaction.msisdnSender }}.
+<p>
+
+<div style="color:#B22222;">{% if transaction.state == "INCOMPLETE" %} 
+ABYSTER a envoyer un sms de relance au client pour qu'il complete le payment
+ {% endif %} 
+ </div>
+<div style="border:1px solid #0f0707; border-radius:20px;">
+    <b>les informations sur cette transaction</b>
+    <!-- cas de la transaction incomplete -->
+    {% if transaction.state == "INCOMPLETE" %}
+        <ul style="list-style-type: none;">
+        <li>Montant total:{{ transaction.amountTtc }}&nbsp;{{ transaction.currency }} </li>
+        <li>Montant Recu: {{ montantPayer }}&nbsp;{{ transaction.currency }}</li>
+        <li>Reste a payer: {{ transaction.deltaAmount }}&nbsp;{{ transaction.currency }}</li>
+        <li>Conversion de devise: {{ transaction.currency }}</li>
+        <li>Taux de change: </li>
+        </ul>
+    {% endif %}
+    <!-- cas de la transaction complete -->
+    {% if transaction.state == "DONE" %}
+        <ul style="list-style-type: none;">
+        <li>Montant: {{ montantPayer }}&nbsp;{{ transaction.currency }} </li>
+        <li>Conversion de devise: {{ transaction.currency }}</li>
+        <li>Envoye le: {{ date }}</li>
+        <li>Taux de change: </li>
+        </ul>
+    {% endif %}
+</div> 
+<div>
+    <p> 
+    Ce paiement apparaitra dans quelques instants sur votre graphe de variations
+    , il suffit de vous connecter a votre dashboard admin. 
+    </p>
+    <p> 
+    Votre relevé de transaction est disponible á tout moment, il suffit de vous connecter a votre dashboard admin. 
+    </p>
+    <p>
+    En cas de problème, veuillez contacter notre service clientèle á l'adresse
+    <a href="http://www.abyster.com/contact_us">http://www.abyster.com/contact_us. </a>
+    </p>
+    <p>
+    Cordialement,
+    l'equipe Abyster.
+    </p>
+
+</div>
+ {% endblock %}

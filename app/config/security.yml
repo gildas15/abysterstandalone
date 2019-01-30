@@ -1,0 +1,37 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                #route after login
+                # the user is redirected here when they need to log in
+                login_path: /
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path: /home
+            logout:
+                path: /logout
+            anonymous:    true
+        api_doc:
+            pattern: ^/api/doc
+            security: false
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #show the home only when user has login
+        - { path: ^/home, role: ROLE_SUPER_ADMIN }  
