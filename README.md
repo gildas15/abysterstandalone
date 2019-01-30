@@ -23,15 +23,16 @@ The web application work in two face, the dashboard face where the vendor will m
 ## The API face
 on the API face we  have the following services:
 - service that will process and register client request in the database while on vendor site
-- service that will first receive payment information from a mobile application(this application ) and treat those information and register client payment in the database.
+- service that will first receive payment information from a mobile application(this application is developt in java and it role is to intercept sms concerning client payment, extract neccessary information), treat those information and register client payment in the system.
 
 
 ## I have one copy of the application and it work locally, the DBMS used is MySql
 The database of the project is inside the project root directory and it is name standaloneapp.sql.
 
-##A user alraedy exist in the system and the credentials to access the system are:
+##A user already exist in the system and the credentials to access the system are:
 Username: Mba Gildas
 Password: Gildas1997
+
 
 
 
