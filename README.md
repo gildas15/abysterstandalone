@@ -31,7 +31,7 @@ The database of the project is inside the project root directory and it is name 
 
 ##A user already exist in the system and the credentials to access the system are:
 Username: Mba Gildas
-Password: Gildas1997
+Password: localhost1997
 
 
 
